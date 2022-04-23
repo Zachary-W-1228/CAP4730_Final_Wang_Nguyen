@@ -1,0 +1,10 @@
+﻿  Enemy.cpp
+  main.cpp
+C:\Users\zhuoerwang\Documents\GitHub\CAP4730\FinalProject\FinalProject\main.cpp(272,36): warning C4834: discarding return value of function with 'nodiscard' attribute
+C:\Users\zhuoerwang\Documents\GitHub\CAP4730\FinalProject\FinalProject\main.cpp(313,79): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+C:\Users\zhuoerwang\Documents\GitHub\CAP4730\FinalProject\FinalProject\main.cpp(345,87): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+C:\Users\zhuoerwang\Documents\GitHub\CAP4730\FinalProject\FinalProject\main.cpp(379,88): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+C:\Users\zhuoerwang\Documents\GitHub\CAP4730\FinalProject\FinalProject\main.cpp(408,90): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+C:\Users\zhuoerwang\Documents\GitHub\CAP4730\FinalProject\FinalProject\main.cpp(489,28): warning C4244: '*=': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
+  FinalProject.vcxproj -> C:\Users\zhuoerwang\Documents\GitHub\CAP4730\FinalProject\x64\Debug\FinalProject.exe
