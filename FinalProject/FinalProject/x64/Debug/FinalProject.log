@@ -1,10 +1,19 @@
-﻿  Enemy.cpp
+﻿  Bullet.cpp
+  Camera.cpp
+  Enemy.cpp
   main.cpp
-C:\Users\zhuoerwang\Documents\GitHub\CAP4730\FinalProject\FinalProject\main.cpp(272,36): warning C4834: discarding return value of function with 'nodiscard' attribute
-C:\Users\zhuoerwang\Documents\GitHub\CAP4730\FinalProject\FinalProject\main.cpp(313,79): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
-C:\Users\zhuoerwang\Documents\GitHub\CAP4730\FinalProject\FinalProject\main.cpp(345,87): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
-C:\Users\zhuoerwang\Documents\GitHub\CAP4730\FinalProject\FinalProject\main.cpp(379,88): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
-C:\Users\zhuoerwang\Documents\GitHub\CAP4730\FinalProject\FinalProject\main.cpp(408,90): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
-C:\Users\zhuoerwang\Documents\GitHub\CAP4730\FinalProject\FinalProject\main.cpp(489,28): warning C4244: '*=': conversion from 'double' to 'float', possible loss of data
+C:\Users\tanng\OneDrive\Documents\GitHub\CAP4730_Final_Wang_Nguyen\FinalProject\FinalProject\main.cpp(272,36): warning C4834: discarding return value of function with 'nodiscard' attribute
+C:\Users\tanng\OneDrive\Documents\GitHub\CAP4730_Final_Wang_Nguyen\FinalProject\FinalProject\main.cpp(313,79): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+C:\Users\tanng\OneDrive\Documents\GitHub\CAP4730_Final_Wang_Nguyen\FinalProject\FinalProject\main.cpp(345,87): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+C:\Users\tanng\OneDrive\Documents\GitHub\CAP4730_Final_Wang_Nguyen\FinalProject\FinalProject\main.cpp(379,88): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+C:\Users\tanng\OneDrive\Documents\GitHub\CAP4730_Final_Wang_Nguyen\FinalProject\FinalProject\main.cpp(408,90): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+C:\Users\tanng\OneDrive\Documents\GitHub\CAP4730_Final_Wang_Nguyen\FinalProject\FinalProject\main.cpp(489,28): warning C4244: '*=': conversion from 'double' to 'float', possible loss of data
+  modelReader.cpp
+C:\Users\tanng\OneDrive\Documents\GitHub\CAP4730_Final_Wang_Nguyen\FinalProject\FinalProject\modelReader.cpp(92,36): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  PlayerState.cpp
+  shaderReader.cpp
   Generating Code...
-  FinalProject.vcxproj -> C:\Users\zhuoerwang\Documents\GitHub\CAP4730\FinalProject\x64\Debug\FinalProject.exe
+LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'C:\Users\tanng\OneDrive\Documents\GitHub\CAP4730_Final_Wang_Nguyen\FinalProject\x64\Debug\vc120.pdb'; linking object as if no debug info
+  FinalProject.vcxproj -> C:\Users\tanng\OneDrive\Documents\GitHub\CAP4730_Final_Wang_Nguyen\FinalProject\x64\Debug\FinalProject.exe
