@@ -14,6 +14,9 @@
 #include <vector>
 #include <list>
 #include <random>
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
 
 #include "Camera.h"
 #include "shaderReader.h"
@@ -21,6 +24,8 @@
 #include "Enemy.h"
 #include "Bullet.h"
 #include "PlayerState.h"
+#include "Model.h"
+#include "Mesh.h"
 
 using namespace glm;
 using namespace std;
@@ -107,113 +112,10 @@ int main()
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // --------------------
 
-    //Enemies.Meteorite
-    modelReader Met_model("data/cube.obj");
-
-    vector<float> Met_vertices = Met_model.returnVertices();
-    unsigned int Met_numVertices = Met_model.returnVerticesNum();
-    vector<int> Met_indices = Met_model.returnIndices();
-
-    unsigned int Met_VBO, Met_VAO, Met_EBO;
-    glGenVertexArrays(1, &Met_VAO);
-    glGenBuffers(1, &Met_VBO);
-    glGenBuffers(1, &Met_EBO);
-    // bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
-    glBindVertexArray(Met_VAO);
-
-    glBindBuffer(GL_ARRAY_BUFFER, Met_VBO);
-    glBufferData(GL_ARRAY_BUFFER, Met_vertices.size() * sizeof(float), &Met_vertices[0], GL_STATIC_DRAW);
-
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, Met_EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, Met_indices.size() * sizeof(int), &Met_indices[0], GL_STATIC_DRAW);
-
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
-
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
-    glEnableVertexAttribArray(1);
-
-
-    //Enemies.Plane
-    modelReader Plane_model("data/cube.obj");
-
-    vector<float> Plane_vertices = Plane_model.returnVertices();
-    unsigned int Plane_numVertices = Plane_model.returnVerticesNum();
-    vector<int> Plane_indices = Plane_model.returnIndices();
-
-    unsigned int Plane_VBO, Plane_VAO, Plane_EBO;
-    glGenVertexArrays(1, &Plane_VAO);
-    glGenBuffers(1, &Plane_VBO);
-    glGenBuffers(1, &Plane_EBO);
-    // bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
-    glBindVertexArray(Plane_VAO);
-
-    glBindBuffer(GL_ARRAY_BUFFER, Plane_VBO);
-    glBufferData(GL_ARRAY_BUFFER, Plane_vertices.size() * sizeof(float), &Plane_vertices[0], GL_STATIC_DRAW);
-
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, Plane_EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, Plane_indices.size() * sizeof(int), &Plane_indices[0], GL_STATIC_DRAW);
-
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
-
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
-    glEnableVertexAttribArray(1);
-
-    //Bullet
-    modelReader Bullet_model("data/cube.obj");
-
-    vector<float> Bullet_vertices = Bullet_model.returnVertices();
-    unsigned int Bullet_numVertices = Bullet_model.returnVerticesNum();
-    vector<int> Bullet_indices = Bullet_model.returnIndices();
-
-    unsigned int Bullet_VBO, Bullet_VAO, Bullet_EBO;
-    glGenVertexArrays(1, &Bullet_VAO);
-    glGenBuffers(1, &Bullet_VBO);
-    glGenBuffers(1, &Bullet_EBO);
-    // bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
-    glBindVertexArray(Bullet_VAO);
-
-    glBindBuffer(GL_ARRAY_BUFFER, Bullet_VBO);
-    glBufferData(GL_ARRAY_BUFFER, Bullet_vertices.size() * sizeof(float), &Bullet_vertices[0], GL_STATIC_DRAW);
-
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, Bullet_EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, Bullet_indices.size() * sizeof(int), &Bullet_indices[0], GL_STATIC_DRAW);
-
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
-
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
-    glEnableVertexAttribArray(1);
-
-    //Cursor
-    modelReader Cursor_model("data/cube.obj");
-
-    vector<float> Cursor_vertices = Cursor_model.returnVertices();
-    unsigned int Cursor_numVertices = Cursor_model.returnVerticesNum();
-    vector<int> Cursor_indices = Cursor_model.returnIndices();
-
-    unsigned int Cursor_VBO, Cursor_VAO, Cursor_EBO;
-    glGenVertexArrays(1, &Cursor_VAO);
-    glGenBuffers(1, &Cursor_VBO);
-    glGenBuffers(1, &Cursor_EBO);
-    // bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
-    glBindVertexArray(Cursor_VAO);
-
-    glBindBuffer(GL_ARRAY_BUFFER, Cursor_VBO);
-    glBufferData(GL_ARRAY_BUFFER, Cursor_vertices.size() * sizeof(float), &Cursor_vertices[0], GL_STATIC_DRAW);
-
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, Cursor_EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, Cursor_indices.size() * sizeof(int), &Cursor_indices[0], GL_STATIC_DRAW);
-
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
-
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
-    glEnableVertexAttribArray(1);
-
-    // note that this is allowed, the call to glVertexAttribPointer registered VBO as the vertex attribute's bound vertex buffer object so afterwards we can safely unbind
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    Model cursorModel("data/cursor.obj");
+    Model metModel("data/asteroids.obj");
+    Model planeModel("data/spaceship.obj");
+    Model bulletModel("data/laser.obj");
 
     // You can unbind the VAO afterwards so other VAO calls won't accidentally modify this VAO, but this rarely happens. Modifying other
     // VAOs requires a call to glBindVertexArray anyways so we generally don't unbind VAOs (nor VBOs) when it's not directly necessary.
@@ -308,11 +210,7 @@ int main()
         // update transform
         cursorshader.setMat4("transform", Cursor_transform);
 
-        glBindVertexArray(Cursor_VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
-        glDrawArrays(GL_TRIANGLES, 0, Cursor_numVertices);
-        glDrawElements(GL_TRIANGLES, Cursor_indices.size(), GL_UNSIGNED_INT, 0);
-        glBindVertexArray(0); // unbind our VA no need to unbind it every time 
-
+        cursorModel.Draw(cursorshader);
 
         //bullet
         if(!bullets.empty())
@@ -340,10 +238,7 @@ int main()
                 // update transform
                 shader.setMat4("transform", Bullet_transform);
 
-                glBindVertexArray(Bullet_VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
-                glDrawArrays(GL_TRIANGLES, 0, Bullet_numVertices);
-                glDrawElements(GL_TRIANGLES, Bullet_indices.size(), GL_UNSIGNED_INT, 0);
-                glBindVertexArray(0); // unbind our VA no need to unbind it every time 
+                bulletModel.Draw(shader);
             }
 
         
@@ -374,10 +269,7 @@ int main()
                     // update transform
                     shader.setMat4("transform", Enemy_transform);
 
-                    glBindVertexArray(Met_VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
-                    glDrawArrays(GL_TRIANGLES, 0, Met_numVertices);
-                    glDrawElements(GL_TRIANGLES, Met_indices.size(), GL_UNSIGNED_INT, 0);
-                    glBindVertexArray(0); // unbind our VA no need to unbind it every time 
+                    metModel.Draw(shader);
                 }
                 if (it->getID() == 1) {
                     //items
@@ -403,10 +295,7 @@ int main()
                     // update transform
                     shader.setMat4("transform", Enemy_transform);
 
-                    glBindVertexArray(Plane_VAO); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
-                    glDrawArrays(GL_TRIANGLES, 0, Plane_numVertices);
-                    glDrawElements(GL_TRIANGLES, Plane_indices.size(), GL_UNSIGNED_INT, 0);
-                    glBindVertexArray(0); // unbind our VA no need to unbind it every time 
+                    planeModel.Draw(shader);
                 }
                 
             }
@@ -417,21 +306,6 @@ int main()
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
-
-    // optional: de-allocate all resources once they've outlived their purpose:
-    // ------------------------------------------------------------------------
-    glDeleteVertexArrays(1, &Cursor_VAO);
-    glDeleteBuffers(1, &Cursor_VBO);
-    glDeleteBuffers(1, &Cursor_EBO);
-    glDeleteVertexArrays(1, &Bullet_VAO);
-    glDeleteBuffers(1, &Bullet_VBO);
-    glDeleteBuffers(1, &Bullet_EBO);
-    glDeleteVertexArrays(1, &Met_VAO);
-    glDeleteBuffers(1, &Met_VBO);
-    glDeleteBuffers(1, &Met_EBO);
-    glDeleteVertexArrays(1, &Plane_VAO);
-    glDeleteBuffers(1, &Plane_VBO);
-    glDeleteBuffers(1, &Plane_EBO);
 
     // glfw: terminate, clearing all previously allocated GLFW resources.
     // ------------------------------------------------------------------
