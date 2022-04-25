@@ -1,6 +1,5 @@
-﻿  Bullet.cpp
-  Enemy.cpp
-  main.cpp
-C:\Users\Zachary Wang\Documents\CAP4730_Final_Wang_Nguyen\FinalProject\FinalProject\main.cpp(379,28): warning C4244: '*=': conversion from 'double' to 'float', possible loss of data
-  Generating Code...
-  FinalProject.vcxproj -> C:\Users\Zachary Wang\Documents\CAP4730_Final_Wang_Nguyen\FinalProject\x64\Debug\FinalProject.exe
+﻿  stb_image.cpp
+LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'C:\Users\tanng\OneDrive\Documents\GitHub\CAP4730_Final_Wang_Nguyen\FinalProject\x64\Debug\vc120.pdb'; linking object as if no debug info
+  FinalProject.vcxproj -> C:\Users\tanng\OneDrive\Documents\GitHub\CAP4730_Final_Wang_Nguyen\FinalProject\x64\Debug\FinalProject.exe
