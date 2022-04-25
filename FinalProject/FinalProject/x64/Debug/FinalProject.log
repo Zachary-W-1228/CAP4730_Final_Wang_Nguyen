@@ -1,3 +1,7 @@
-﻿  main.cpp
-C:\Users\tanng\OneDrive\Documents\GitHub\CAP4730_Final_Wang_Nguyen\FinalProject\FinalProject\main.cpp(373,28): warning C4244: '*=': conversion from 'double' to 'float', possible loss of data
-  FinalProject.vcxproj -> C:\Users\tanng\OneDrive\Documents\GitHub\CAP4730_Final_Wang_Nguyen\FinalProject\x64\Debug\FinalProject.exe
+﻿  Model.cpp
+LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+Model.obj : error LNK2019: unresolved external symbol SOIL_load_image referenced in function "int __cdecl TextureFromFile(char const *,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?TextureFromFile@@YAHPEBDV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+Model.obj : error LNK2019: unresolved external symbol SOIL_free_image_data referenced in function "int __cdecl TextureFromFile(char const *,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?TextureFromFile@@YAHPEBDV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+C:\Users\tanng\OneDrive\Documents\GitHub\CAP4730_Final_Wang_Nguyen\FinalProject\FinalProject\SOIL2\lib\soil2-debug.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+C:\Users\tanng\OneDrive\Documents\GitHub\CAP4730_Final_Wang_Nguyen\FinalProject\x64\Debug\FinalProject.exe : fatal error LNK1120: 2 unresolved externals

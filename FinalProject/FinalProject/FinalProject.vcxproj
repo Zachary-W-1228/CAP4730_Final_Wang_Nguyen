@@ -93,8 +93,8 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\tanng\OneDrive\Documents\GitHub\CAP4730_Final_Wang_Nguyen\FinalProject\glew-2.1.0\lib\Release\Win32;C:\Users\tanng\OneDrive\Documents\GitHub\CAP4730_Final_Wang_Nguyen\FinalProject\glfw-3.3.6.bin.WIN64\lib-vc2015;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glew32s.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\tanng\OneDrive\Documents\GitHub\CAP4730_Final_Wang_Nguyen\FinalProject\FinalProject\SOIL2\lib;C:\Users\tanng\OneDrive\Documents\GitHub\CAP4730_Final_Wang_Nguyen\FinalProject\glew-2.1.0\lib\Release\Win32;C:\Users\tanng\OneDrive\Documents\GitHub\CAP4730_Final_Wang_Nguyen\FinalProject\glfw-3.3.6.bin.WIN64\lib-vc2015;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>soil2-debug.lib;opengl32.lib;glew32s.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -112,8 +112,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\tanng\OneDrive\Documents\GitHub\CAP4730_Final_Wang_Nguyen\FinalProject\glew-2.1.0\lib\Release\Win32;C:\Users\tanng\OneDrive\Documents\GitHub\CAP4730_Final_Wang_Nguyen\FinalProject\glfw-3.3.6.bin.WIN64\lib-vc2015;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glew32s.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\tanng\OneDrive\Documents\GitHub\CAP4730_Final_Wang_Nguyen\FinalProject\FinalProject\SOIL2\lib;C:\Users\tanng\OneDrive\Documents\GitHub\CAP4730_Final_Wang_Nguyen\FinalProject\glew-2.1.0\lib\Release\Win32;C:\Users\tanng\OneDrive\Documents\GitHub\CAP4730_Final_Wang_Nguyen\FinalProject\glfw-3.3.6.bin.WIN64\lib-vc2015;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>soil2-debug.lib;opengl32.lib;glew32s.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -127,8 +127,8 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\glew-2.1.0\lib\Release\x64;$(SolutionDir)\glfw-3.3.6.bin.WIN64\lib-vc2019;$(SolutionDir)\assimp\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glew32s.lib;glfw3.lib;assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\glew-2.1.0\lib\Release\x64;$(SolutionDir)\glfw-3.3.6.bin.WIN64\lib-vc2019;$(SolutionDir)\assimp\lib;C:\Users\tanng\OneDrive\Documents\GitHub\CAP4730_Final_Wang_Nguyen\FinalProject\FinalProject\SOIL2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>soil2-debug.lib;opengl32.lib;glew32s.lib;glfw3.lib;assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -146,8 +146,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\glew-2.1.0\lib\Release\x64;$(SolutionDir)\glfw-3.3.6.bin.WIN64\lib-vc2019;$(SolutionDir)\assimp\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glew32s.lib;glfw3.lib;assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\glew-2.1.0\lib\Release\x64;$(SolutionDir)\glfw-3.3.6.bin.WIN64\lib-vc2019;$(SolutionDir)\assimp\lib;C:\Users\tanng\OneDrive\Documents\GitHub\CAP4730_Final_Wang_Nguyen\FinalProject\FinalProject\SOIL2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>soil2-debug.lib;opengl32.lib;glew32s.lib;glfw3.lib;assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
