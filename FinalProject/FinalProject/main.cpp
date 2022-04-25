@@ -106,10 +106,10 @@ int main()
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // --------------------
 
-    Model cursorModel("C:/Users/Zachary Wang/Documents/CAP4730_Final_Wang_Nguyen/FinalProject/data/cursor.obj");
-    Model metModel("C:/Users/Zachary Wang/Documents/CAP4730_Final_Wang_Nguyen/FinalProject/data/asteroids.obj");
-    Model planeModel("C:/Users/Zachary Wang/Documents/CAP4730_Final_Wang_Nguyen/FinalProject/data/spaceship.obj");
-    Model bulletModel("C:/Users/Zachary Wang/Documents/CAP4730_Final_Wang_Nguyen/FinalProject/data/laser.obj");
+    Model cursorModel("data/cursor.obj");
+    Model metModel("data/asteroids.obj");
+    Model planeModel("data/spaceship.obj");
+    Model bulletModel("data/laser.obj");
 
     // You can unbind the VAO afterwards so other VAO calls won't accidentally modify this VAO, but this rarely happens. Modifying other
     // VAOs requires a call to glBindVertexArray anyways so we generally don't unbind VAOs (nor VBOs) when it's not directly necessary.
