@@ -13,8 +13,14 @@ public:
 	Bullet(vec3 Pos, vec3 Tar, float Speed); // Pos is initial position, Tar is target position
 	void UpdatePos(float deltatime); // update enemy position
 	vec3 GetPos();
+	float GetPitch();
+	float GetYaw();
+	float GetRoll();
 private:
 	vec3 Position;
 	vec3 Direction;
 	float ShotSpeed;
+	float Pitch;
+	float Roll;
+	float Yaw;
 };

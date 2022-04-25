@@ -16,9 +16,15 @@ public:
 	int getID();
 	void getHit();
 	int getLife();
+	float GetPitch();
+	float GetYaw();
+	float GetRoll();
 private:
 	vec3 Position;
 	vec3 Direction;
 	int life;
 	int EnemyID; // 0 is Meteorite, 1 is plane
+	float Pitch;
+	float Roll;
+	float Yaw;
 };

@@ -18,6 +18,9 @@ Enemy::Enemy(vec3 Pos, vec3 Tar, int ID) {
 		life = 10;
 	else if (EnemyID == 1)
 		life = 5;
+	Pitch = Direction.y;
+	Yaw = Direction.x;
+	Roll = Direction.z;
 }
 
 void Enemy::UpdatePos(float deltatime) {
@@ -43,4 +46,16 @@ void Enemy::getHit() {
 
 int Enemy::getLife() {
 	return life;
+}
+
+float Enemy::GetPitch() {
+	return Pitch;
+}
+
+float Enemy::GetYaw() {
+	return Yaw;
+}
+
+float Enemy::GetRoll() {
+	return Roll;
 }

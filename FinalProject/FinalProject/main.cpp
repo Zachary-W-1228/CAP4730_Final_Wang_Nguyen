@@ -181,6 +181,8 @@ int main()
                             Bulletit = bullets.erase(Bulletit);
                             if (Bulletit == bullets.end())
                                 break;
+                            if (it == enemies.end())
+                                break;
                         }
                     }
                 if (it == enemies.end())
@@ -213,7 +215,6 @@ int main()
         // create transformations
         mat4 Enemy_transform = mat4(1.0f); // make sure to initialize matrix to identity matrix first
         Enemy_transform = translate(Enemy_transform, player1.GetCursor());
-        Enemy_transform = scale(Enemy_transform, vec3(0.8f, 0.8f, 0.8f));
         Enemy_transform = rotate(Enemy_transform, radians(90.0f), vec3(1.0f, 0.0f, 0.0f));
 
         // update transform
@@ -243,7 +244,10 @@ int main()
                 // create transformations
                 mat4 Bullet_transform = mat4(1.0f); // make sure to initialize matrix to identity matrix first
                 Bullet_transform = translate(Bullet_transform, it->GetPos());
-                Bullet_transform = scale(Bullet_transform, vec3(0.2f, 0.2f, 0.2f));
+                Bullet_transform = rotate(Bullet_transform, (-1.0f * it->GetPitch()), vec3(1.0f, 0.0f, 0.0f));
+                Bullet_transform = rotate(Bullet_transform, it->GetYaw(), vec3(0.0f, 1.0f, 0.0f));
+                Bullet_transform = rotate(Bullet_transform, it->GetRoll(), vec3(0.0f, 0.0f, 1.0f));
+                Bullet_transform = scale(Bullet_transform, vec3(0.1f, 0.1f, 0.2f));
                 Bullet_transform = rotate(Bullet_transform, radians(90.0f), vec3(0.0f,1.0f, 0.0f));
 
                 // update transform
@@ -302,6 +306,8 @@ int main()
                     // create transformations
                     mat4 Enemy_transform = mat4(1.0f); // make sure to initialize matrix to identity matrix first
                     Enemy_transform = translate(Enemy_transform, it->GetPos());
+                    Enemy_transform = rotate(Enemy_transform, it->GetPitch(), vec3(1.0f, 0.0f, 0.0f));
+                    Enemy_transform = rotate(Enemy_transform, (-1 * it->GetYaw()), vec3(0.0f, 1.0f, 0.0f));
                     Enemy_transform = rotate(Enemy_transform, radians(180.0f), vec3(0.0f, 1.0f, 0.0f));
 
                     // update transform
