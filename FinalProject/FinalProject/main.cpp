@@ -46,6 +46,7 @@ float lastX = 800.0f / 2.0;
 float lastY = 600.0 / 2.0;
 bool firstMouse = true;
 bool buttonPress = false;
+vec2 cursorPos = vec2(0.0f, 0.0f);
 
 //other setting
 float scaleNum = 0.1f;
@@ -57,14 +58,6 @@ Camera camera;
 // timing
 float deltaTime = 0.0f;
 float lastFrame = 0.0f;
-
-//Gamesetting
-list <Enemy> enemies;
-list <Bullet> bullets;
-float enemyRate = 10.0f;
-PlayerState player1(10.0f, 1.0f, 50.0f);
-float EnemydeltaTime = enemyRate;
-float BulletdeltaTime = player1.GetFireDelay();
 
 
 int main()
@@ -94,6 +87,7 @@ int main()
     glfwSetCursorPosCallback(window, mouse_callback);
     glfwSetMouseButtonCallback(window, mouse_button_callback);
     glfwSetScrollCallback(window, scroll_callback);
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
     // glew: load all OpenGL function pointers
     glewInit();
@@ -112,10 +106,10 @@ int main()
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // --------------------
 
-    Model cursorModel("data/cursor.obj");
-    Model metModel("data/asteroids.obj");
-    Model planeModel("data/spaceship.obj");
-    Model bulletModel("data/laser.obj");
+    Model cursorModel("C:/Users/Zachary Wang/Documents/CAP4730_Final_Wang_Nguyen/FinalProject/data/cursor.obj");
+    Model metModel("C:/Users/Zachary Wang/Documents/CAP4730_Final_Wang_Nguyen/FinalProject/data/asteroids.obj");
+    Model planeModel("C:/Users/Zachary Wang/Documents/CAP4730_Final_Wang_Nguyen/FinalProject/data/spaceship.obj");
+    Model bulletModel("C:/Users/Zachary Wang/Documents/CAP4730_Final_Wang_Nguyen/FinalProject/data/laser.obj");
 
     // You can unbind the VAO afterwards so other VAO calls won't accidentally modify this VAO, but this rarely happens. Modifying other
     // VAOs requires a call to glBindVertexArray anyways so we generally don't unbind VAOs (nor VBOs) when it's not directly necessary.
@@ -125,6 +119,14 @@ int main()
     // uncomment this call to draw in wireframe polygons.
     // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
+    //Gamesetting
+    list <Enemy> enemies;
+    list <Bullet> bullets;
+    float enemyRate = 3.0f;
+    PlayerState player1(50.0f, 0.2f, 50.0f);
+    float EnemydeltaTime = enemyRate;
+    float BulletdeltaTime = player1.GetFireDelay();
+    bool bulletLF = false; //true shoot from left, false shoot from right
 
     // render loop
     // -----------
@@ -152,7 +154,11 @@ int main()
             }
         if (buttonPress) {
             if (BulletdeltaTime >= player1.GetFireDelay()) {
-                bullets.push_back(Bullet(vec3 (0.0f, 5.0f, 0.0f), player1.GetCursor(), player1.GetShotSpeed()));
+                if (bulletLF)
+                    bullets.push_back(Bullet(vec3 (1.0f, -0.3f, -5.0f), player1.GetCursor(), player1.GetShotSpeed()));
+                else
+                    bullets.push_back(Bullet(vec3(-1.0f, -0.3f, -5.0f), player1.GetCursor(), player1.GetShotSpeed()));
+                bulletLF = !bulletLF;
                 BulletdeltaTime = 0.0f;
             }
         }
@@ -162,7 +168,7 @@ int main()
         if(!enemies.empty())
             for (list<Enemy>::iterator it = enemies.begin(); it != enemies.end(); it++) {
                 it->UpdatePos(deltaTime);
-                if (distance(it->GetPos(), vec3(0.0f, 0.0f, 0.0f)) <= 3.0f) {
+                if (it->GetPos().z <= 0.0f) {
                     player1.GetHit();
                     it = enemies.erase(it);
                 }
@@ -171,7 +177,7 @@ int main()
                         if (distance(it->GetPos(), Bulletit->GetPos()) <= 3.0f) {
                             it->getHit();
                             if (it->getLife() == 0)
-                                it == enemies.erase(it);
+                                it = enemies.erase(it);
                             Bulletit = bullets.erase(Bulletit);
                             if (Bulletit == bullets.end())
                                 break;
@@ -181,10 +187,10 @@ int main()
                     break;
             }
         if (EnemydeltaTime >= enemyRate) {
-            float xPos = (-400) + static_cast <float> (rand()) / static_cast <float> (RAND_MAX / (400 - (-400)));
-            float yPos = (-300) + static_cast <float> (rand()) / static_cast <float> (RAND_MAX / (300 - (-300)));
+            float xPos = (-55) + static_cast <float> (rand()) / static_cast <float> (RAND_MAX / (55 - (-55)));
+            float yPos = (-40) + static_cast <float> (rand()) / static_cast <float> (RAND_MAX / (40 - (-40)));
             int ID = rand() % 2;
-            enemies.push_back(Enemy(vec3(0.0f, 0.0f, 50.0f), vec3(0.0f, 0.0f, 0.0f), ID));
+            enemies.push_back(Enemy(vec3(xPos, yPos, 95.0f), vec3(0.0f, 0.0f, 0.0f), ID));
             EnemydeltaTime = 0.0f;
         }
         
@@ -193,27 +199,30 @@ int main()
         // ------
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-
+        
         //cursor
+        player1.updateCursor(-cursorPos.x, cursorPos.y);
+        //items
         cursorshader.use();
-        //creat view
+        // creat view
         cursorshader.setMat4("view", camera.GetViewMatrix());
         //creat proj
-        mat4 Cursor_projection = perspective(radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
-        cursorshader.setMat4("proj", Cursor_projection);
+        mat4 Enemy_projection = perspective(radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+        cursorshader.setMat4("proj", Enemy_projection);
 
         // create transformations
-        mat4 Cursor_transform = mat4(1.0f); // make sure to initialize matrix to identity matrix first
-        Cursor_transform = translate(Cursor_transform, player1.GetCursor());
+        mat4 Enemy_transform = mat4(1.0f); // make sure to initialize matrix to identity matrix first
+        Enemy_transform = translate(Enemy_transform, player1.GetCursor());
+        Enemy_transform = scale(Enemy_transform, vec3(0.8f, 0.8f, 0.8f));
+        Enemy_transform = rotate(Enemy_transform, radians(90.0f), vec3(1.0f, 0.0f, 0.0f));
 
         // update transform
-        cursorshader.setMat4("transform", Cursor_transform);
+        cursorshader.setMat4("transform", Enemy_transform);
 
         cursorModel.Draw(cursorshader);
 
         //bullet
-        if(!bullets.empty())
+        if (!bullets.empty())
             for (list<Bullet>::iterator it = bullets.begin(); it != bullets.end(); it++) {
                 //items
                 shader.use();
@@ -228,24 +237,26 @@ int main()
                 //set viewPos
                 shader.setVec3("viewPos", camera.GetViewPos());
                 //creat proj
-                mat4 Bullet_projection = perspective(radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+                mat4 Bullet_projection = perspective(radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
                 shader.setMat4("proj", Bullet_projection);
 
                 // create transformations
                 mat4 Bullet_transform = mat4(1.0f); // make sure to initialize matrix to identity matrix first
                 Bullet_transform = translate(Bullet_transform, it->GetPos());
+                Bullet_transform = scale(Bullet_transform, vec3(0.2f, 0.2f, 0.2f));
+                Bullet_transform = rotate(Bullet_transform, radians(90.0f), vec3(0.0f,1.0f, 0.0f));
 
                 // update transform
                 shader.setMat4("transform", Bullet_transform);
 
+                //render
                 bulletModel.Draw(shader);
             }
 
-        
         //enemies
-        if(!enemies.empty())
+        if (!enemies.empty())
             for (list<Enemy>::iterator it = enemies.begin(); it != enemies.end(); it++) {
-                if (it -> getID() == 0 ) {
+                if (it->getID() == 0) {
                     //items
                     shader.use();
                     // set objColor
@@ -259,12 +270,12 @@ int main()
                     //set viewPos
                     shader.setVec3("viewPos", camera.GetViewPos());
                     //creat proj
-                    mat4 Enemy_projection = perspective(radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+                    mat4 Enemy_projection = perspective(radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
                     shader.setMat4("proj", Enemy_projection);
 
                     // create transformations
                     mat4 Enemy_transform = mat4(1.0f); // make sure to initialize matrix to identity matrix first
-                    Enemy_transform = translate(Enemy_transform, it ->GetPos());
+                    Enemy_transform = translate(Enemy_transform, it->GetPos());
 
                     // update transform
                     shader.setMat4("transform", Enemy_transform);
@@ -285,21 +296,21 @@ int main()
                     //set viewPos
                     shader.setVec3("viewPos", camera.GetViewPos());
                     //creat proj
-                    mat4 Enemy_projection = perspective(radians(camera.Zoom), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+                    mat4 Enemy_projection = perspective(radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
                     shader.setMat4("proj", Enemy_projection);
 
                     // create transformations
                     mat4 Enemy_transform = mat4(1.0f); // make sure to initialize matrix to identity matrix first
                     Enemy_transform = translate(Enemy_transform, it->GetPos());
+                    Enemy_transform = rotate(Enemy_transform, radians(180.0f), vec3(0.0f, 1.0f, 0.0f));
 
                     // update transform
                     shader.setMat4("transform", Enemy_transform);
 
                     planeModel.Draw(shader);
                 }
-                
-            }
 
+            }
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------
@@ -341,19 +352,18 @@ void mouse_callback(GLFWwindow* window, double xposIn, double yposIn)
     float xpos = static_cast<float>(xposIn);
     float ypos = static_cast<float>(yposIn);
 
-    float xoffset = xpos - lastX;
+    float sensitiveX = 110.0f / 800.0f;
+    float sensitiveY = 80.0f / 600.0f;
+
+    float xoffset = xpos- lastX;
     float yoffset = lastY - ypos;
     lastX = xpos;
     lastY = ypos;
 
-    if (buttonPress) {
-        float sensitivity = 0.005f;
-        xoffset *= sensitivity;
-        yoffset *= sensitivity;
-
-        HoriRotateNum += xoffset;
-        VertRotateNum += yoffset;
-    }
+    if((cursorPos.x + xoffset * sensitiveX) >= -55.0f && (cursorPos.x + xoffset * sensitiveX) <= 55.0f)
+        cursorPos.x += xoffset * sensitiveX;
+    if ((cursorPos.y + yoffset * sensitiveY) >= -40.0f && (cursorPos.y + yoffset * sensitiveY) <= 40.0f)
+        cursorPos.y += yoffset * sensitiveY;
 }
 
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)

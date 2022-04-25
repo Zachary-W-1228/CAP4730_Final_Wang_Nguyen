@@ -13,8 +13,11 @@
 using namespace glm;
 
 Camera::Camera() {
-    Position = vec3(0.0f, 0.0f, 0.0f);
+    Position = vec3(0.0f, 0.0f, -5.0f);
     WorldUp = vec3(0.0f, 1.0f, 0.0f);
+    Front = vec3(0.0f, 0.0f, 1.0f);
+    Right = vec3(1.0f, 0.0f, 0.0f);
+    Up = vec3(0.0f, 1.0f, 0.0f);
     updateCameraVectors();
 }
 
@@ -30,10 +33,5 @@ vec3 Camera::GetViewPos() {
 
 void Camera::updateCameraVectors()
 {
-    vec3 front;
-    front = normalize(vec3(0.0f, 0.0f, 1.0f) - Position);
-    Front = normalize(front);
-    Right = normalize(cross(WorldUp, Front));
-    Up = normalize(cross(Front, Right));
 }
 

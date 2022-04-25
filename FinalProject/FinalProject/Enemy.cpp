@@ -14,10 +14,19 @@ Enemy::Enemy(vec3 Pos, vec3 Tar, int ID) {
 	Position = Pos;
 	Direction = normalize(Tar - Pos);
 	EnemyID = ID;
+	if (EnemyID == 0)
+		life = 10;
+	else if (EnemyID == 1)
+		life = 5;
 }
 
 void Enemy::UpdatePos(float deltatime) {
-	Position = Position + deltatime * Direction;
+	float speed = 1.0f;
+	if (EnemyID == 0)
+		speed = 30.0f;
+	if (EnemyID == 1)
+		speed = 50.0f;
+	Position = Position + deltatime * Direction * speed;
 }
 
 vec3 Enemy::GetPos() {

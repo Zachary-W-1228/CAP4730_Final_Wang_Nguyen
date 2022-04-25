@@ -11,7 +11,7 @@ PlayerState::PlayerState(float SS, float FD, float R) {
 	FireDelay = FD;
 	range = R;
 	life = 3;
-	cursorPos = glm::vec3(400.0f, 300.0f, range);
+	cursorPos = glm::vec3(0.0f, 0.0f, range);
 }
 
 void PlayerState::GetHit() {
