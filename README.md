@@ -1,4 +1,6 @@
 # CAP4730_Final_Wang_Nguyen
+Goal: The goal of this project is to create a first-person flight shooting game. Similar to Star Fox but first-person. The player will be able to shoot generated enemies using the cursor. 
+
 Compiling Instructions:
 1. Go to the source code project solution and open with VS2019.
 3. Go to project solution properties.
