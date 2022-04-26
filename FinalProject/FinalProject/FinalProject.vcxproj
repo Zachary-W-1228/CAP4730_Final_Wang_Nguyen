@@ -176,6 +176,8 @@
   <ItemGroup>
     <None Include="cursor.fs" />
     <None Include="cursor.vs" />
+    <None Include="skybox.fs" />
+    <None Include="skybox.vs" />
     <None Include="Source_2.fs" />
     <None Include="Source_2.vs" />
   </ItemGroup>
